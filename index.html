@@ -261,13 +261,29 @@
             margin-bottom: 1rem;
         }
 
-        .banner-img {
-            max-width: 650px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
+       ¿.banner-img {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    object-fit: contain;
+}
+        /* Ajuste del logo principal para celulares */
+@media (max-width: 600px) {
+    .banner-img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
 
+    .banner-image-container {
+        width: 100%;
+        overflow: hidden;
+    }
+}
         .hero-banner h2 {
             font-size: 2.5rem;
             color: var(--white);
