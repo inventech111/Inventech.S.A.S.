@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!--
+      GITHUB PAGES:
+      Las imágenes, PDF y demás archivos usan rutas relativas.
+      Si quieres que el video funcione online, sube también video.mp4
+      a la misma carpeta que este index.html.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTECH SAS - Organización y Eficiencia para tu Negocio</title>
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. VARIABLES Y ESTILOS GLOBALES
+           ========================================== */
+        :root {
+            --primary-dark: #0a192f;
+            --secondary-dark: #112240;
+            --accent-blue: #00d2ff;
+            --accent-hover: #0099cc;
+            --text-light: #e6f1ff;
+            --text-muted: #8892b0;
+            --bg-card: #1d3557;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        /* ==========================================
+           2. ENCABEZADO Y NAVEGACIÓN
+           ========================================== */
+        header {
+            background-color: var(--secondary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img-placeholder {
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: var(--secondary-dark);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 9px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            color: var(--white);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-light);
+            padding: 0.7rem 1.2rem;
+            min-width: 120px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        
+        .nav-btn:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            background-color: rgba(0, 210, 255, 0.05);
+        }
+
+        .nav-btn.active {
+            background-color: var(--accent-blue);
+            color: var(--primary-dark);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        /* ==========================================
+           3. SECCIONES Y CONTENIDOS (TAB SYSTEM)
+           ========================================== */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            min-height: 70vh;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary-dark);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background-color: var(--secondary-dark);
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* ==========================================
+           4. IMÁGENES Y PLACEHOLDERS
+           ========================================== */
+        .media-placeholder {
+            background: linear-gradient(135deg, #112240 0%, #1d3557 150%);
+            border: 2px dashed var(--accent-blue);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 1rem 0;
+        }
+
+        .media-placeholder i {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        /* Estilo general para imágenes adaptables */
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .img-responsive:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-blue);
+        }
+
+        /* Banner Específico */
+        .hero-banner {
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), var(--secondary-dark);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            border: 1px solid var(--accent-blue);
+            margin-bottom: 2rem;
+        }
+
+        .banner-image-container {
+            margin-bottom: 1rem;
+        }
+
+        .banner-img {
+            max-width: 650px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .hero-banner h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Botones de PDF */
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--accent-blue);
+            color: var(--primary-dark);
+            padding: 0.8rem 1.5rem;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-pdf:hover {
+            background-color: #00b3dc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
+        }
+
+        /* ==========================================
+           5. REDES SOCIALES Y OTROS
+           ========================================== */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-card {
+            background-color: var(--primary-dark);
+            padding: 1.2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .social-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--accent-blue);
+        }
+
+        /* MAPA DEL SITIO */
+        .site-map {
+            padding-left: 25px;
+            color: var(--text-light);
+        }
+
+        .site-map > li {
+            margin-bottom: 1.2rem;
+            padding-left: 5px;
+        }
+
+        .site-map > li > strong {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .site-map ul {
+            margin-top: 0.5rem;
+            padding-left: 25px;
+            list-style-type: disc;
+        }
+
+        .site-map ul li {
+            margin-bottom: 0.45rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .site-map a {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .site-map a:hover {
+            color: var(--accent-blue);
+        }
+
+        .site-map .site-submenu {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 0.4rem;
+        }
+
+        .site-map .site-submenu li {
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--secondary-dark);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1100px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                width: 100%;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-btn {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+
+           /* ==========================================
+           ESTILO PERSONALIZADO PARA EL VOLANTE
+           ========================================== */
+        .img-volante {
+            width: 100%;
+            max-width: 400px; /* <-- Cambia este valor para hacer el volante más grande o más pequeño */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-img-placeholder">
+                    <img src="inventech.jpg" alt="Logo INVENTECH" class="logo-img">
+                </div>
+                <div class="logo-text">
+                    <h1>INVENTECH S.A.S</h1>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><button class="nav-btn active" onclick="openTab(event, 'hogar')">Hogar</button></li>
+                    <li><button class="nav-btn" onclick="openTab(event, 'nosotros')">Nosotros</button></li>
+                    <li><button class="nav-btn" onclick="openTab(event, 'servicio')">Conoce Nuestro Servicio</button></li>
+                    <li><button class="nav-btn" onclick="openTab(event, 'marketing')">Marketing</button></li>
+                    <li><button class="nav-btn" onclick="openTab(event, 'soporte')">Soporte</button></li>
+                    <li><button class="nav-btn" onclick="openTab(event, 'mapa')">Mapa del sitio</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================
+             SECCIÓN 1: HOGAR
+             ========================================== -->
+        <section id="hogar" class="tab-content active">
+            <div class="hero-banner">
+                <div class="banner-image-container">
+                    <img src="inventech.jpg" alt="INVENTECH Logo Banner" class="banner-img">
+                </div>
+                <h2>INVENTECH S.A.S</h2>
+                <p>ORGANIZACIÓN Y EFICIENCIA PARA TU NEGOCIO</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-video"></i> Video Publicidad</h3>
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 1rem;">
+                    <video controls playsinline preload="metadata" style="width: 100%; max-width: 360px; height: 640px; object-fit: contain; border-radius: 12px; background-color: #000; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                        <source src="video.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de este video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 2: NOSOTROS
+             ========================================== -->
+        <section id="nosotros" class="tab-content">
+            <h2 class="section-title"><i class="fa-solid fa-building"></i> Nosotros</h2>
+            
+            <div class="card">
+                <h3>Filosofía Institucional</h3>
+                <p><strong>Lema:</strong> ORGANIZACIÓN Y EFICIENCIA PARA TU NEGOCIO</p>
+                <br>
+                <p><strong>Misión:</strong> Inventech es una empresa encargada de optimizar la gestión de procesos en las PyMEs mediante herramientas tecnológicas e innovadoras que proporcionan información en tiempo real, mejorando la eficiencia operativa y la toma de decisiones de nuestros clientes.</p>
+                <br>
+                <p><strong>Visión:</strong> Considerarnos para el 2030 como referente tecnológico líder en la transformación digital de las PyMEs, logrando que el control de procesos sea automatizado, accesible y libre de errores.</p>
+            </div>
+
+            <div class="card">
+                <h3>Valores Corporativos</h3>
+                <div class="grid-2">
+                    <ul>
+                        <li><strong>INTEGRIDAD:</strong> Actuar con honestidad y ética incluso cuando nadie está mirando.</li>
+                        <li><strong>RESPONSABILIDAD:</strong> Cumplir con los compromisos y asumir las consecuencias de las decisiones.</li>
+                        <li><strong>TRANSPARENCIA:</strong> Ofrecer información clara y honesta.</li>
+                    </ul>
+                    <ul>
+                        <li><strong>INNOVACIÓN:</strong> Permite crear y mejorar herramientas constantes.</li>
+                        <li><strong>EFICIENCIA:</strong> Hacer las cosas de mejor manera y de forma rápida.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Políticas de Ventas</h3>
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color:var(--accent-blue)">Estructura de Precios y Pagos</h4>
+                        <p>Transferencias bancarias y pagos digitales (Nequi / Daviplata). Bajo el modelo de servicios, se requiere un 50% de anticipo para la configuración inicial y el 50% restante al finalizar la capacitación y entrega de accesos.</p>
+                        <br>
+                        <h4 style="color:var(--accent-blue)">Descuentos</h4>
+                        <p>10% de descuento por pago anual anticipado o un 5% de descuento por referir a otra empresa que concrete la compra.</p>
+                        <br>
+                        <h4 style="color:var(--accent-blue)">Impuestos</h4>
+                        <p>Todos los precios cotizados incluyen el IVA legal vigente, garantizando transparencia total desde la cotización inicial.</p>
+                    </div>
+                    <div>
+                        <h4 style="color:var(--accent-blue)">Entregas y Envíos</h4>
+                        <p><strong>Plazos de Entrega:</strong> El acceso a la plataforma se habilita en un máximo de 24 horas hábiles tras la confirmación del pago inicial. La configuración personalizada de códigos QR y carga de inventario inicial se realizará en un plazo de 5 a 10 días hábiles.</p>
+                        <p><strong>Costo de Envío:</strong> No aplica envío físico. Sin embargo, si la capacitación requiere presencia física en la bodega, el cliente asumirá los costos de desplazamiento del técnico.</p>
+                        <p><strong>Cobertura:</strong> La implementación del sistema solo se realiza en zonas ubicadas dentro de Bogotá D.C.</p>
+                    </div>
+                </div>
+                <br>
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color:var(--accent-blue)">Cambios, Devoluciones y Garantías</h4>
+                        <p><strong>Prueba del sistema:</strong> Tendrán un mes de prueba del sistema. Si no es de su agrado, deberán avisar con 5 días de antelación para realizar la cancelación o modificación según requieran.</p>
+                        <p><strong>Garantía:</strong> Se ofrece una garantía del funcionamiento del software durante los 12 meses de vigencia del contrato.</p>
+                        <p><strong>Reclamaciones:</strong> Reportar incidencias a través de correo o WhatsApp rápido para atención de 12:00 PM a 6:00 PM en días hábiles.</p>
+                    </div>
+                    <div>
+                        <h4 style="color:var(--accent-blue)">Atención al Cliente y Post-Venta</h4>
+                        <ul>
+                            <li><strong>Seguimiento:</strong> Mensaje de control a los 7 días de la implementación.</li>
+                            <li><strong>Fidelización:</strong> Webinars trimestrales gratuitos sobre optimización del sistema.</li>
+                            <li><strong>Encuestas:</strong> Encuesta trimestral de satisfacción.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Avatares</h3>
+                <div class="media-placeholder">
+                    <i class="fa-solid fa-users"></i>
+                    <img src="avatares.jpg" alt="Avatares" style="max-width:100%; height: auto; border-radius: 9px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 3: CONOCE NUESTRO SERVICIO
+             ========================================== -->
+        <section id="servicio" class="tab-content">
+            <h2 class="section-title"><i class="fa-solid fa-gears"></i> Conoce Nuestro Servicio</h2>
+            
+            <div class="card">
+                <h3>Descripción del Servicio</h3>
+                <p>Es una empresa que maneja una aplicación especializada para brindar la gestión y control de inventarios completa a pequeñas y medianas empresas (PyMEs).</p>
+            </div>
+
+            <!-- CATÁLOGO EN PDF INTEGRADO -->
+            <div class="card">
+                <h3><i class="fa-solid fa-book-open"></i> Catálogo de Servicios</h3>
+                <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                    Puedes visualizar nuestro catálogo interactivo a continuación o descargarlo en formato PDF.
+                </p>
+
+                <!-- Botón de descarga -->
+                <div style="margin-bottom: 1.5rem; text-align: center;">
+                    <a href="catalogo.pdf" target="_blank" download class="btn-pdf">
+                        <i class="fa-solid fa-file-pdf"></i> Descargar Catálogo (PDF)
+                    </a>
+                </div>
+
+                <!-- Visor del archivo PDF -->
+                
+<div style="width: 100%; height: 850px; border-radius: 8px; overflow: hidden; border: 1px solid var(--accent-blue);">
+    <iframe src="catalogo.pdf#view=Fit" width="100%" height="100%" style="border: none;">
+        <p>Tu navegador no soporta la visualización de PDF. 
+           <a href="catalogo.pdf" target="_blank">Haz clic aquí para abrirlo.</a>
+        </p>
+    </iframe>
+</div>
+
+            </div>
+
+            <div class="card">
+                <h3>Galería del Servicio</h3>
+                <div class="grid-2">
+                    <div class="media-placeholder">
+                        <i class="fa-regular fa-image"></i>
+                   <img src="galeria1.jpeg" style="max-width:100%; height: auto; border-radius: 9px;">
+                    </div>
+                    <div class="media-placeholder">
+                        <i class="fa-regular fa-image"></i>
+                     <img src="galeria2.jpeg"  style="max-width:100%; height: auto; border-radius: 9px;">
+               <img src="galeria3.jpeg"  style="max-width:100%; height: auto; border-radius: 9px;">     
+               </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 4: MARKETING (ACTUALIZADA)
+             ========================================== -->
+              
+        <section id="marketing" class="tab-content">
+            <h2 class="section-title"><i class="fa-solid fa-bullhorn"></i> Marketing</h2>
+            
+            <!-- FOLLETO -->
+            <div class="card">
+                <h3><i class="fa-solid fa-file-image"></i> Folleto</h3>
+                <div class="grid-2" style="margin-top: 1rem;">
+                    <div>
+                        <img src="folleto1.png" alt="Folleto Página 1" class="img-responsive">
+                    </div>
+                    <div>
+                        <img src="folleto 2.png" alt="Folleto Página 2" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETAS DE PRESENTACIÓN -->
+            <div class="card">
+                <h3><i class="fa-solid fa-address-card"></i> Tarjetas de Presentación</h3>
+                <div class="grid-4" style="margin-top: 1rem;">
+                    <div>
+                        <img src="tarjeta1.jpeg" alt="Tarjeta 1" class="img-responsive">
+                    </div>
+                    <div>
+                        <img src="tarjeta2.jpeg" alt="Tarjeta 2" class="img-responsive">
+                    </div>
+                    <div>
+                        <img src="tarjeta3.jpeg" alt="Tarjeta 3" class="img-responsive">
+                    </div>
+                    <div>
+                        <img src="tarjeta4.jpeg" alt="Tarjeta 4" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AQUÍ PEGAS LA OPCIÓN 1 (OFERTAS Y PROMOCIONES) -->
+            <div class="card">
+                <h3><i class="fa-solid fa-tag"></i> Ofertas y Promociones Especiales</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                    Aprovecha nuestros beneficios exclusivos diseñados para impulsar la transformación digital de tu negocio.
+                </p>
+
+                <div class="grid-2">
+                    <!-- Promoción 1 -->
+                    <div style="background-color: var(--primary-dark); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                        <span style="background-color: var(--accent-blue); color: var(--primary-dark); font-weight: bold; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">¡PRUEBA SIN RIESGO!</span>
+                        <h4 style="color: var(--white); margin: 0.8rem 0 0.4rem 0;">1 Mes de Prueba Gratis</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">
+                            Prueba nuestro sistema de gestión e inventario por código QR durante 30 días. Comprueba cómo optimizamos el tiempo y reducimos errores en tu PyME sin compromisos.
+                        </p>
+                    </div>
+
+                    <!-- Promoción 2 -->
+                    <div style="background-color: var(--primary-dark); padding: 1.2rem; border-radius: 8px; border-left: 4px solid #00ff88;">
+                        <span style="background-color: #00ff88; color: var(--primary-dark); font-weight: bold; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">10% OFF</span>
+                        <h4 style="color: var(--white); margin: 0.8rem 0 0.4rem 0;">Descuento por Pago Anual</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">
+                            Paga de forma anticipada tu suscripción anual y obtén un <strong>10% de descuento inmediato</strong> en el total de la contratación de tu plataforma INVENTECH.
+                        </p>
+                    </div>
+
+                    <!-- Promoción 3 -->
+                    <div style="background-color: var(--primary-dark); padding: 1.2rem; border-radius: 8px; border-left: 4px solid #ffcc00;">
+                        <span style="background-color: #ffcc00; color: var(--primary-dark); font-weight: bold; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">PROGRAMA DE REFERIDOS</span>
+                        <h4 style="color: var(--white); margin: 0.8rem 0 0.4rem 0;">Refiere a una PyME Amiga</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">
+                            Recomienda INVENTECH a otra empresa. Por cada cliente referido que concrete su compra, ambos reciben un <strong>5% de descuento adicional</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Promoción 4 -->
+                    <div style="background-color: var(--primary-dark); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                        <span style="background-color: var(--accent-blue); color: var(--primary-dark); font-weight: bold; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;">COMBO DIGITAL</span>
+                        <h4 style="color: var(--white); margin: 0.8rem 0 0.4rem 0;">Implementación + Capacitación Incluida</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-light);">
+                            Contrata nuestro servicio este mes y te incluimos la carga inicial de tu inventario, generación de códigos QR y la capacitación de tu personal totalmente gratis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VOLANTE -->
+            <div class="card">
+                <h3><i class="fa-solid fa-paper-plane"></i> Volante</h3>
+                <img src="volante.jpeg" alt="Volante INVENTECH" class="img-volante">
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SECCIÓN 5: SOPORTE
+             ========================================== -->
+        <section id="soporte" class="tab-content">
+            <h2 class="section-title"><i class="fa-solid fa-headset"></i> Soporte y Contacto</h2>
+            
+            <div class="card">
+                <h3>Contacto Directo</h3>
+                <p><i class="fa-solid fa-envelope" style="color: var(--accent-blue);"></i> <strong>Correo Electrónico:</strong> <a href="mailto:inventech03@gmail.com">inventech03@gmail.com</a></p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--accent-blue);"></i> <strong>Ubicación:</strong> Bogotá, Barrios Unidos</p>
+            </div>
+
+            <div class="card">
+                <h3>Síguenos en Redes Sociales</h3>
+                <div class="social-grid">
+                    <a href="https://www.instagram.com/inventech03?igsh=MXVvbGQ3OHRjZ2ZpOA==" target="_blank" class="social-card">
+                        <i class="fa-brands fa-instagram"></i>
+                        <h4>Instagram</h4>
+                        <p>@INVENTECH03</p>
+                    </a>
+
+                    <a href="https://www.facebook.com/share/1B7pRxv7bo/?mibextid=wwXIfr" target="_blank" class="social-card">
+                        <i class="fa-brands fa-facebook"></i>
+                        <h4>Facebook</h4>
+                        <p>@INVENTECH03</p>
+                    </a>
+
+                    <a href="https://youtube.com/@inventech-t1f?si=58fFH61PjhfmFpov" target="_blank" class="social-card">
+                        <i class="fa-brands fa-youtube"></i>
+                        <h4>YouTube</h4>
+                        <p>Inventech S.A.S</p>
+                    </a>
+
+                    <a href="https://tiktok.com/@inventech8" target="_blank" class="social-card">
+                        <i class="fa-brands fa-tiktok"></i>
+                        <h4>TikTok</h4>
+                        <p>@INVENTECH8</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Información Adicional</h3>
+                <p>INVENTECH SAS es una empresa enfocada en desarrollar y brindar soluciones mediante una aplicación móvil y web para optimizar la gestión de inventarios para PYMES en Bogotá, Colombia.</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN 6: MAPA DEL SITIO
+             ========================================== -->
+        <section id="mapa" class="tab-content">
+            <h2 class="section-title"><i class="fa-solid fa-sitemap"></i> Mapa del sitio</h2>
+
+            <div class="card">
+                <h3>Menú</h3>
+                <ol class="site-map">
+                    <li>
+                        <strong><a href="#" onclick="goToTab(event, 'hogar')">HOGAR</a></strong>
+                        <ul>
+                            <li><a href="#" onclick="goToTab(event, 'hogar')">BANNER (LOGO, LEMA)</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'hogar')">VIDEO PUBLICIDAD</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><a href="#" onclick="goToTab(event, 'nosotros')">NOSOTROS</a></strong>
+                        <ul>
+                            <li>
+                                <a href="#" onclick="goToTab(event, 'nosotros')">FILOSOFÍA INSTITUCIONAL</a>
+                                <ul class="site-submenu">
+                                    <li><a href="#" onclick="goToTab(event, 'nosotros')">🔹 Lema</a></li>
+                                    <li><a href="#" onclick="goToTab(event, 'nosotros')">🔹 Misión, Visión y Valores</a></li>
+                                    <li><a href="#" onclick="goToTab(event, 'nosotros')">🔹 Políticas de Ventas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" onclick="goToTab(event, 'nosotros')">AVATARES</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><a href="#" onclick="goToTab(event, 'servicio')">CONOCE NUESTRO SERVICIO</a></strong>
+                        <ul>
+                            <li><a href="#" onclick="goToTab(event, 'servicio')">DESCRIPCIÓN DEL SERVICIO</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'servicio')">CATÁLOGO DE SERVICIOS</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'servicio')">GALERÍA DEL SERVICIO</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><a href="#" onclick="goToTab(event, 'marketing')">MARKETING</a></strong>
+                        <ul>
+                            <li><a href="#" onclick="goToTab(event, 'marketing')">FOLLETO</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'marketing')">TARJETAS DE PRESENTACIÓN</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'marketing')">OFERTA Y PROMOCIONES</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'marketing')">VOLANTE</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><a href="#" onclick="goToTab(event, 'soporte')">SOPORTE</a></strong>
+                        <ul>
+                            <li><a href="#" onclick="goToTab(event, 'soporte')">INFORMACIÓN ADICIONAL</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'soporte')">UBICACIÓN</a></li>
+                            <li><a href="#" onclick="goToTab(event, 'soporte')">REDES SOCIALES</a></li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 INVENTECH SAS. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JAVASCRIPT NAVEGACIÓN -->
+    <script>
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const navBtns = document.getElementsByClassName("nav-btn");
+            for (let i = 0; i < navBtns.length; i++) {
+                navBtns[i].classList.remove("active");
+            }
+
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            evt.currentTarget.classList.add("active");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function goToTab(event, tabName) {
+            event.preventDefault();
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const navBtns = document.getElementsByClassName("nav-btn");
+            for (let i = 0; i < navBtns.length; i++) {
+                navBtns[i].classList.remove("active");
+            }
+
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            for (let i = 0; i < navBtns.length; i++) {
+                const boton = navBtns[i];
+                if (boton.getAttribute("onclick") && boton.getAttribute("onclick").includes("'" + tabName + "'")) {
+                    boton.classList.add("active");
+                    break;
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>
